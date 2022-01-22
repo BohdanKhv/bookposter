@@ -1,0 +1,22 @@
+{
+  "name": "bookposter",
+  "version": "1.0.0",
+  "description": "just a bookstore 0.1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Bohdan Khvorostovskyi",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^6.1.7"
+  },
+  "devDependencies": {
+    "dotenv": "^14.2.0",
+    "nodemon": "^2.0.15"
+  }
+}
