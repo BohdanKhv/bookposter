@@ -1,0 +1,38 @@
+<div class="row justify-content-between">
+    <div class="col-sm-7 my-2">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="title" placeholder="Title" value="<%= book.title %>"/> 
+    </div>
+    <div class="col-sm-5 my-2">
+        <label class="form-label">Author</label>
+        <select class="form-select" name="author">
+            <% authors.forEach(author => { %>
+                <% if (author.id === book.author) { %>
+                <option selected label="<%= author.name %>" value="<%= author.id %>" />
+                <% } else { %>
+                    <option label="<%= author.name %>" value="<%= author.id %>" />
+                <% } %>
+            <% }) %>
+        </select>
+    </div>
+</div>
+<div class="row justify-content-between">
+    <div class="col-sm-7 my-2">
+        <label class="form-label">Publish Date</label>
+        <input type="date" class="form-control" name="publishDate" 
+            value="<%= book.publishDate == null ? '' : book.publishDate.toISOString().split('T')[0] %>"
+        /> 
+    </div>
+    <div class="col-sm-5 my-2">
+        <label class="form-label">Page Count</label>
+        <input min="1" max="9999" type="number" class="form-control" name="pageCount" placeholder="200" value="<%= book.pageCount %>"/> 
+    </div>
+</div>
+<div class="my-2">
+    <label class="form-label">Cover</label>
+    <input type="file" class="form-control" name="cover"/> 
+</div>
+<div class="my-2">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" name="description" cols="30" rows="5" placeholder="Description"><%= book.description %></textarea>
+</div>

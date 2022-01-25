@@ -3,8 +3,10 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
+
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/author')
+const bookRouter = require('./routes/book')
 
 if(process.env.NODE_ENV !== 'production') {
     const dotenv = require('dotenv')
@@ -24,6 +26,7 @@ connectDB()
 // Router
 app.use('/', indexRouter)
 app.use('/authors', authorRouter)
+app.use('/books', bookRouter)
 
 
 app.listen(process.env.PORT || 3000)

@@ -1,12 +1,12 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <h3>Create new author</h3>
+        <h3>Create new book</h3>
         <hr/>
-        <form action="/authors" method="POST">
+        <form action="/books" method="POST" enctype="multipart/form-data">
             <%- include('_form_fields.ejs') %>
             <div class="row justify-content-end mt-2">
                 <div class="col-sm-6 my-2 col-md-4">
-                    <a href="/authors" class="btn btn-danger w-100">Cancel</a>
+                    <a href="/books" class="btn btn-danger w-100">Cancel</a>
                 </div>
                 <div class="col-sm-6 my-2 col-md-4">
                     <input type="submit" value="Create" class="btn btn-primary w-100" />
