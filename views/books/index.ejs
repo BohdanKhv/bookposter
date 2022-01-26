@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-sm-10 col-12">
+    <div class="col-sm-12">
         <h3>Search Books</h3>
         <form action="books" method="GET">
             <div>
@@ -23,13 +23,9 @@
     </div>
 </div>
 <br/>
-<div class="row justify-content-center">
+<div class="row">
     <% books.forEach(book => { %>
-        <% if ( books.length >= 3 ) { %>
-            <div class="col-md-4 my-2">
-        <% } else { %>
-            <div class="col-sm-6 my-2">
-        <% } %>
+        <div class="col-lg-3 col-md-4 col-sm-6 my-2">
             <div class="card">
                 <img src="<%= book.coverImagePath %>" class="card-img-top" height="150" style="object-fit: cover;">
                 <div class="card-body">
