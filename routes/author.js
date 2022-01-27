@@ -5,7 +5,7 @@ const Book = require('../models/book')
 
 
 // @desc   Get all authors
-// @route  GET author/
+// @route  GET authors/
 router.get('/', async (req, res) => {
 
     let searchOptions = {}

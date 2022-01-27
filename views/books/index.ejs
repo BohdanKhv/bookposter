@@ -3,22 +3,20 @@
         <h3>Search Books</h3>
         <form action="books" method="GET">
             <div>
-                <label class="form-label">Title</label>
+                <label class="form-label ms-2">Title</label>
                 <input type="text" name="title" class="form-control" value="<%= locals.searchOptions.title %>" />
             </div>
             <div class="row justify-content-between my-4 d-flex align-items-end">
                 <div class="col-6">
-                    <label class="form-label">Published After</label>
+                    <label class="form-label ms-2">Published After</label>
                     <input type="date" name="publishedAfter" class="form-control" value="<%= locals.searchOptions.publishedAfter %>" />
                 </div>
                 <div class="col-6">
-                    <label class="form-label">Published Before</label>
+                    <label class="form-label ms-2">Published Before</label>
                     <input type="date" name="publishedBefore" class="form-control" value="<%= locals.searchOptions.publishedBefore %>" />
                 </div>
             </div>
-            <div class="row justify-content-end my-3">
-                <input type="submit" value="Search" class="btn btn-primary col-4 mx-3"> 
-            </div>
+            <input type="submit" value="Search" class="btn btn-primary w-100 mx-0 mt-1"> 
         </form>
     </div>
 </div>
@@ -27,16 +25,15 @@
     <% books.forEach(book => { %>
         <div class="col-lg-3 col-md-4 col-sm-6 my-2">
             <div class="card">
-                <img src="<%= book.coverImagePath %>" class="card-img-top" height="150" style="object-fit: cover;">
+                <a href="/books/<%= book.id %>">
+                    <img src="<%= book.coverImagePath %>" class="card-img-top" height="150" style="object-fit: cover;"/>
+                </a>
                 <div class="card-body">
-                    <h5 class="card-title"><%= book.title.charAt(0).toUpperCase() + book.title.slice(1) %></h5>
+                    <a href="/books/<%= book.id %>" class="card-title link-dark fs-4"><%= book.title.charAt(0).toUpperCase() + book.title.slice(1) %></a>
                 </div>
-                <div class="row justify-content-center mx-auto mb-2">
-                    <div class="col-12 d-flex p-0">
-                        <button class="btn btn-primary m-1 btn-sm">View</button>
-                        <button class="btn btn-warning m-1 btn-sm">Edit</button>
-                        <button class="btn btn-danger m-1 btn-sm">Delete</button>
-                    </div>
+                <div class="d-flex justify-content-center mx-1 my-2">
+                    <a href="/books/<%= book.id %>/edit" class="btn btn-warning me-1 w-100 btn-sm">Edit</a>
+                    <%- include('../partials/deleteButton', { url: `books/${book.id}` }) %>
                 </div>
             </div>
         </div>
