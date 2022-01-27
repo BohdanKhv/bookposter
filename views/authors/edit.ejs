@@ -1,0 +1,18 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <h3>Edit author</h3>
+        <hr/>
+        <form action="/authors/<%= author.id %>" method="POST">
+            <input type="hidden" name="_method" value="PUT"/>
+            <%- include('_form_fields.ejs') %>
+            <div class="row justify-content-end mt-2">
+                <div class="col-sm-6 my-2 col-md-4">
+                    <a href="/authors/<%= author.id %>" class="btn btn-danger w-100">Cancel</a>
+                </div>
+                <div class="col-sm-6 my-2 col-md-4">
+                    <input type="submit" value="Update" class="btn btn-primary w-100" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

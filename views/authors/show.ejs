@@ -1,0 +1,41 @@
+<h2>
+    <%= author.name %>
+</h2>
+<div class="text-start d-flex">
+    <a href="/authors/<%= author.id %>/edit" class="btn btn-sm text-end btn-warning me-2">Edit</a>
+    <%- include('../partials/deleteButton.ejs', { url: `/authors/${ author.id}` }) %>
+</div>
+<hr/>
+<div class="row">
+    <% if(books.length > 0) { %>
+        <div>
+            <h2>
+                Books By Author
+            </h2>
+        </div>
+        <% books.forEach(book => { %>
+            <div class="col-lg-3 col-md-4 col-sm-6 my-2">
+                <div class="card">
+                    <img src="<%= book.coverImagePath %>" class="card-img-top" height="150" style="object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= book.title.charAt(0).toUpperCase() + book.title.slice(1) %></h5>
+                    </div>
+                    <div class="row justify-content-center mx-auto mb-2">
+                        <div class="col-12 d-flex p-0">
+                            <button class="btn btn-primary m-1 btn-sm">View</button>
+                            <button class="btn btn-warning m-1 btn-sm">Edit</button>
+                            <button class="btn btn-danger m-1 btn-sm">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <div>
+            <h2>
+                This author has no books
+            </h2>
+            <a href="/books/new">Add Book</a>
+        </div>
+    <% } %>
+</div>
