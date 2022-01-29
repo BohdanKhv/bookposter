@@ -77,16 +77,32 @@ router.put('/:id', async (req, res) => {
     try {
         authors = await Author.find({})
         book = await Book.findById(req.params.id)
+
+        // remove book from the old author
+        const prevAuthor = await Author.findByIdAndUpdate(
+            book.author,
+            { $pull: { books: { $in: [book] } } },
+        );
+        await prevAuthor.save();
+
+        // Update book 
         book.title = req.body.title
         book.author = req.body.author
         book.publishDate = new Date(req.body.publishDate)
         book.pageCount = req.body.pageCount
         book.description = req.body.description
+
         if(req.body.cover != null && req.body.cover !== "") {
             saveCover(book, req.body.cover)
         }
-        
         await book.save()
+
+        // add the book to the author
+        const newAuthor = await Author.findById({_id: book.author})
+        newAuthor.books.push(book);
+        await newAuthor.save();
+        
+
         res.redirect(`/books/${book.id}`)
     } catch (err) {
         if (book != null) {
@@ -137,6 +153,12 @@ router.post('/', async (req, res) => {
     saveCover(book, req.body.cover)
     try {
         const newBook = await book.save()
+
+        // add the book to the author
+        const author = await Author.findById({_id: newBook.author})
+        author.books.push(newBook);
+        await author.save();
+
         res.redirect(`books/${newBook.id}`)
     } catch (err) {
         renderNewPage(res, book, err)
